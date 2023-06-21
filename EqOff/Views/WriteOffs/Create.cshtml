@@ -1,0 +1,57 @@
+﻿@model EqOff.Models.WriteOff
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Добавление списания</h1>
+
+<h4>WriteOff</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EquipmentId" class="control-label"></label>
+                <select asp-for="EquipmentId" class ="form-control" asp-items="ViewBag.EquipmentId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reason" class="control-label"></label>
+                <input asp-for="Reason" class="form-control" />
+                <span asp-validation-for="Reason" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOff" class="control-label"></label>
+                <input asp-for="DateOff" class="form-control" />
+                <span asp-validation-for="DateOff" class="text-danger"></span>
+            </div>
+@*            <div class="form-group">
+                <label asp-for="EmployeeId" class="control-label"></label>
+                <select asp-for="EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select>
+            </div>*@
+             <input type="hidden" name="EmployeeId" value="@ViewBag.EmployeeId">
+            <div class="form-group">
+                <label asp-for="Number" class="control-label"></label>
+                <input asp-for="Number" class="form-control" />
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateReg" class="control-label"></label>
+                <input asp-for="DateReg" class="form-control" />
+                <span asp-validation-for="DateReg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-id="@ViewData["EmployeeId"]">Вернуться к списку списаний</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
